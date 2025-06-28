@@ -1,0 +1,3 @@
+央卫综合,#genre#
+CCTV1,http://example.com/cctv1.m3u8
+CCTV2,http://example.com/cctv2.m3u8
