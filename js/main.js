@@ -1,7 +1,7 @@
 const PASSWORD = "1215";
 const TXT_URLS = [
-  "data/10.txt",
-  "data/gggg.nzk"
+  "https://123.tv1288.xyz/10.txt",
+  "http://rihou.cc:555/gggg.nzk"
 ];
 
 function verify() {
@@ -15,9 +15,9 @@ function verify() {
 
 async function loadChannels() {
   let output = "";
-  let index = 0;
+  let index = 0;  // 全局索引
   const timestamp = Math.floor(Date.now());
-  window.channelMap = []; // 存储频道名和URL对应关系
+  window.channelMap = [];
 
   for (const url of TXT_URLS) {
     try {
@@ -30,7 +30,7 @@ async function loadChannels() {
         } else {
           const [name, realUrl] = line.split(",");
           index++;
-          channelMap[index] = { name, realUrl };
+          window.channelMap[index] = { name, realUrl };
           output += `${name},${location.origin}/player.html?i=${index}&t=${timestamp}\n`;
         }
       }
@@ -38,6 +38,5 @@ async function loadChannels() {
       output += `加载失败: ${url}\n`;
     }
   }
-
   document.getElementById("result").textContent = output;
 }
